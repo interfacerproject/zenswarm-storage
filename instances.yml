@@ -1,0 +1,24 @@
+---
+zenswarm-storage.router:
+  advertise_uri: localhost:3301
+  http_port: 8081
+
+zenswarm-storage.s1-master:
+  advertise_uri: localhost:3302
+  http_port: 8082
+
+zenswarm-storage.s1-replica:
+  advertise_uri: localhost:3303
+  http_port: 8083
+
+zenswarm-storage.s2-master:
+  advertise_uri: localhost:3304
+  http_port: 8084
+
+zenswarm-storage.s2-replica:
+  advertise_uri: localhost:3305
+  http_port: 8085
+
+zenswarm-storage-stateboard:
+  listen: localhost:4401
+  password: passwd
