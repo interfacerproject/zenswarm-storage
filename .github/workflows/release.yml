@@ -16,10 +16,9 @@ jobs:
       with:
         tarantool-version: '2.10'
     - run: ./deps.sh
-    - run: tarantoolctl rocks install cartridge
+    - run: tarantoolctl rocks install cartridge-cli
     - run: tarantoolctl rocks make
     - run: .rocks/bin/luatest -v
-    - run: sudo apt-get install cartridge-cli
     - name: Semantic Release
       uses: cycjimmy/semantic-release-action@v3
       if: github.ref == 'refs/heads/main'
