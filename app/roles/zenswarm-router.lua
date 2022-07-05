@@ -43,7 +43,7 @@ local function init(opts) -- luacheck: no unused args
             function(req)
                 local body = req:json()
                 log.error(body)
-                if not body.id then
+                if not body.key then
                     return { status = 400, body = 'Missing key' }
                 end
                 local result, err = crud.get('values', body.key)
