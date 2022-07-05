@@ -1,0 +1,19 @@
+name: Luacheck
+
+on: [push, pull_request]
+
+jobs:
+  luacheck:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: tarantool/setup-tarantool@v1
+      with:
+        tarantool-version: '2.10'
+    - run: ./deps.sh
+    - run: .rocks/bin/luacheck .
+    - uses: puria/action-luacheck@v1
+      with:
+        github_token: '${{ github.token }}'
+        reporter: github-pr-review

@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-  steps:
+    steps:
     - uses: actions/checkout@v2
     - uses: tarantool/setup-tarantool@v1
       with:
@@ -18,3 +18,9 @@ jobs:
     - run: ./deps.sh
     - run: tarantoolctl rocks make
     - run: .rocks/bin/luatest -v
+    - name: Report test coverage
+      if: success()
+      continue-on-error: true
+      run: luacov-coveralls -i src/luacheck -e .luarocks
+      env:
+        COVERALLS_REPO_TOKEN: ${{ github.token }}
