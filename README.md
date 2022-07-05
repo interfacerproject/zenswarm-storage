@@ -27,12 +27,19 @@ It configures package search path to correctly start application on production
 
 ## Roles
 
-Application has one simple role, [`app.roles.custom`](./app/roles/custom.lua).
+Application has two roles, [`app.roles.zenswarm-storage`](./app/roles/zenswarm-storage.lua)
+and [`app.roles.zenswarm-router`](./app/roles/zenswarm-router.lua).
 It exposes `/hello` and `/metrics` endpoints:
 
 ```bash
-curl localhost:8081/hello
-curl localhost:8081/metrics
+# STORE
+curl -X POST localhost:8081/store -d '{"key": "my-key", "value": {"my": "data"}}'
+
+# RETRIEVE
+curl localhost:8081/retrieve/my-key
+# OR
+curl -X POST localhost:8081/retrieve -d '{"key": "my-key"}'
+
 ```
 
 Also, Cartridge roles [are registered](./init.lua)
