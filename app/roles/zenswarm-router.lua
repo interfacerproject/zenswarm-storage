@@ -25,7 +25,7 @@ local function init(opts) -- luacheck: no unused args
             path = '/retrieve/:key',
         },
             function(req)
-                if not req.tstash.id then
+                if not req.tstash.key then
                     return { status = 400, body = 'Missing key' }
                 end
                 local result, err = crud.get('values', req.tstash.key)
