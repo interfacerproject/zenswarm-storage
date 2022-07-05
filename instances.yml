@@ -19,6 +19,14 @@ zenswarm-storage.s2-replica:
   advertise_uri: localhost:3305
   http_port: 8085
 
+zenswarm-storage.s3-master:
+  advertise_uri: localhost:3306
+  http_port: 8086
+
+zenswarm-storage.s3-replica:
+  advertise_uri: localhost:3307
+  http_port: 8087
+
 zenswarm-storage-stateboard:
   listen: localhost:4401
   password: passwd
