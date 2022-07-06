@@ -107,7 +107,11 @@ The Zenswarm storage is built on a Tarantool cluster.
 
 The cluster consists of subclusters called "shards", each storing some part of data. Each shard in turn, constitutes a "replicaset" consisting of several replicas, one of which serves as a "master node" that processes all read and write requests.
 
-The whole dataset is logically partitioned into a predefined number of virtual buckets (so called "vbuckets"), to each is assigned a unique identification number ranging from 1 to N, where N is the total amount of vbuckets. The amount of vbuckets is specifically chosen to be several orders of magnitude larger than the potential amount of cluster nodes, even given future cluster scaling. For example, with M projected nodes the dataset may be split into 100 * M or even 1,000 * M vbuckets. 
+The whole dataset is logically partitioned into a predefined number of virtual buckets (so called "vbuckets"), to each is assigned a unique identification number ranging from 1 to N, where N is the total amount of vbuckets. 
+
+![bucket](docs/images/bucket.svg)
+
+The amount of vbuckets is specifically chosen to be several orders of magnitude larger than the potential amount of cluster nodes, even given future cluster scaling. For example, with M projected nodes the dataset may be split into 100 * M or even 1,000 * M vbuckets. 
 Choosing the correct amount of vbuckets is crucial, the trade-off is: 
 - if buckets are too many, extra memory/storage resources for storing the routing information may be required 
 - if buckets are too few, a decrease in the granularity of rebalancing may be experienced. 
@@ -145,12 +149,16 @@ On their way from the application to the sharded cluster, all the requests pass 
 
 A router can also calculate a bucket id on its own provided that the application clearly defines rules for calculating a bucket id based on the request data. To do it, a router needs to be aware of the data schema.
 
+![master_replica](docs/images/master_replica.svg)
+
 The router exposes also an entry point as a single REST address to allow to interact with the distributed storage. Namely the access point of interact with the storage, in the same fashion of the EBSI infrastructure defined for the StorageAPI and the off-chain Storage service.  
 
 A router is stateless and doesn’t store the cluster topology. Nor does it rebalance data.
 A router is a separate program component that can be implemented both in the storage and application layers, and its placement is application-driven.
 
 A router maintains a constant pool of connections to all the storages that is created at startup. Creating it this way helps avoid configuration errors. Once a pool is created, a router caches the current state of the \_vbucket table to speed up the routing. In case a bucket id is moved to another storage as a result of data rebalancing or one of the shards fails over to a replica, a router updates the routing table in a way that's transparent for the application.
+
+![schema](docs/images/schema.svg)
 
 Sharding is not integrated into any centralized configuration storage system. It is assumed that the application itself handles all the interactions with such systems and passes sharding parameters. That said, the configuration can be changed dynamically - for example, when adding or deleting one or several shards:
 
