@@ -4,7 +4,12 @@ This a simplest application based on Tarantool Cartridge.
 
 ## Quick start
 
-To build application and setup topology:
+### Requirements
+First, install [Tarantool cartridge](https://github.com/tarantool/cartridge-cli#installation).
+
+## Build your first Zenswarm Storage
+
+Build an application and setup topology:
 
 ```bash
 cartridge build
