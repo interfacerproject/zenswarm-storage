@@ -1,15 +1,13 @@
-# Simple Tarantool Cartridge-based application
+# Zenswarm-storage
 
-This a simplest application based on Tarantool Cartridge.
+**Distributed key-value storage for caching and sharding**
 
-## Quick start
+Zenswarm-storage is a distributed caching and sharding offering high availability of data: its nodes are used by applications to store arbitrarily large data objects pegged to a blockchain without, overloading the ledger or blockchain nodes. 
 
-### Requirements
-First, install [Tarantool cartridge](https://github.com/tarantool/cartridge-cli#installation).
+Zenswarm-storage is powered by [Tarantool](https://www.tarantool.io/en/), is deployed via Ansible and includes test and setup scripts.
 
-## Build your first Zenswarm Storage
-
-Build an application and setup topology:
+## Build your first network
+First, install [Tarantool cartridge](https://github.com/tarantool/cartridge-cli#installation), then run:
 
 ```bash
 cartridge build
