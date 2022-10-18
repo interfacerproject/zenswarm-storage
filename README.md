@@ -1,5 +1,7 @@
 # Zenswarm-storage
 
+![bucket](docs/images/zenswarm-storage.png)
+
 **Distributed key-value storage for caching and sharding**
 
 Zenswarm-storage is a distributed caching and sharding offering high availability of data: its nodes are used by applications to store arbitrarily large data objects pegged to a blockchain without, overloading the ledger or blockchain nodes. 
