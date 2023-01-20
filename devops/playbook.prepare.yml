@@ -1,0 +1,13 @@
+---
+
+- name: Prepare
+  gather_facts: false
+  any_errors_fatal: true
+  become: true
+  become_user: root
+  hosts: all
+  pre_tasks:
+    - include_vars:
+        file: users.yml
+  roles:
+    - tarantool.cartridge

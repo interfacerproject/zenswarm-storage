@@ -8,4 +8,4 @@ deps: ## 🛠  Install deps needed for the job to run
 	@ansible-galaxy install tarantool.cartridge,1.12.0
 
 deploy-test: ## 🧪 Deploy the test environment
-	@ansible-playbook -i testnet.yaml playbook.yml --limit router-rs,s-1
+	@ansible-playbook -i testnet.yaml playbook.prepare.yml --limit router_rs,s_1 --vault-password-file=.zenflows-storage-vault
