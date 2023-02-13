@@ -1,5 +1,3 @@
-#!/bin/sh
-
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Copyright (C) 2022-2023 Dyne.org foundation <foundation@dyne.org>.
 #
@@ -16,11 +14,6 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-# Simple post-build script
-# Will be ran after "tarantoolctl rocks make" on application packing
-# Could be useful to remove some build artifacts from result package
-
-# For example:
-# rm -rf third_party
-# rm -rf node_modules
-# rm -rf doc
+[submodule ".reuse"]
+	path = .reuse
+	url = https://github.com/interfacerproject/reuse
